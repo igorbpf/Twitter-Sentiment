@@ -1,7 +1,7 @@
 from flask import Flask, jsonify
 import numpy as np
 #from sklearn.datasets import load_iris
-#from sklearn.svm import SVC
+from sklearn.svm import SVC
 
 
 app = Flask(__name__)
