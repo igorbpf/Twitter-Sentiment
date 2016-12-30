@@ -9,13 +9,14 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    iris = load_iris()
-    X, y = iris.data, iris.target
-    svm = SVC(kernel='linear')
-    svm.fit(X,y)
     y_pred = svm.predict(X)
 
     return str(y_pred.tolist())#jsonify(target=y_pred.tolist())
 
 if __name__ == '__main__':
+    iris = load_iris()
+    X, y = iris.data, iris.target
+    svm = SVC(kernel='linear')
+    svm.fit(X,y)
+
     app.run(debug=True)
