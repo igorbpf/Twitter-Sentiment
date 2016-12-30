@@ -9,9 +9,9 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    y_pred = svm.predict(X)
-
-    return str(y_pred.tolist())#jsonify(target=y_pred.tolist())
+    #y_pred = svm.predict(X)
+    return "Love"
+    #return str(y_pred.tolist())#jsonify(target=y_pred.tolist())
 
 if __name__ == '__main__':
     iris = load_iris()
