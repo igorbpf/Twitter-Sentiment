@@ -1,0 +1,13 @@
+Flask==0.12
+Jinja2==2.8.1
+MarkupSafe==0.23
+Werkzeug==0.11.13
+argparse==1.2.1
+click==6.6
+itsdangerous==0.24
+nltk==3.2.1
+oauthlib==2.0.1
+requests==2.12.4
+requests-oauthlib==0.7.0
+twython==3.4.0
+wsgiref==0.1.2
