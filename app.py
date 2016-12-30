@@ -15,7 +15,7 @@ def index():
     svm.fit(X,y)
     y_pred = svm.predict(X)
 
-    return jsonify(target=y_pred.tolist())
+    return str(y_pred.tolist())#jsonify(target=y_pred.tolist())
 
 if __name__ == '__main__':
     app.run(debug=True)
