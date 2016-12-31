@@ -1,22 +1,19 @@
 from flask import Flask, jsonify
 import numpy as np
-from sklearn.datasets import load_iris
-from sklearn.svm import SVC
-
+from twitter_sent import twitter
 
 app = Flask(__name__)
 
 
 @app.route('/')
 def index():
-    #y_pred = svm.predict(X)
-    return "Love"
-    #return str(y_pred.tolist())#jsonify(target=y_pred.tolist())
+    return "Digite ao lado do endereco sua busca"
+
+
+@app.route('/<string:query>')
+def queries(query):
+    response = twitter(query)
+    return jsonify(response=response)
 
 if __name__ == '__main__':
-    ##iris = load_iris()
-    #X, y = iris.data, iris.target
-    #svm = SVC(kernel='linear')
-    #svm.fit(X,y)
-
     app.run(debug=True)
