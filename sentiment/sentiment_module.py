@@ -1,7 +1,8 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from nltk.corpus import stopwords
-from nltk.stem import RSLPStemmer
+import nltk
+#from nltk.corpus import stopwords
+#from nltk.stem import RSLPStemmer
 import re
 from sklearn.externals import joblib
 
@@ -13,7 +14,8 @@ def review_to_words(review):
     letters_only = re.sub("\W+", " ", review, flags=re.UNICODE)
 
     words = letters_only.lower().split()
-    stops = set(stopwords.words("portuguese"))
+    nltk.data.path.append('./nltk_data/')
+    stops = set(nltk.corpus.stopwords.words("portuguese"))
     meaningful_words = [w for w in words if not w in stops]
     #stemmer = RSLPStemmer()
     meaningful_stemmed = meaningful_words #[stemmer.stem(w) for w in meaningful_words]
