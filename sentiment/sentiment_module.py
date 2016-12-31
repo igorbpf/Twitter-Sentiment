@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-#import nltk
+import nltk
 #from nltk.corpus import stopwords
 #from nltk.stem import RSLPStemmer
 import re
