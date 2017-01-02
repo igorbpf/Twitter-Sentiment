@@ -19,7 +19,7 @@ def queries(query):
     #response = twitter(query)
     job = q.enqueue(twitter, query)
 
-    return jsonify(response=response.result)
+    return jsonify(response=job.result)
 
 if __name__ == '__main__':
     app.run(debug=True)
