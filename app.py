@@ -1,6 +1,10 @@
 from flask import Flask, jsonify
 import numpy as np
 from twitter_sent import twitter
+from rq import Queue
+from worker import conn
+
+q = Queue(connection=conn)
 
 app = Flask(__name__)
 
@@ -12,8 +16,10 @@ def index():
 
 @app.route('/<string:query>')
 def queries(query):
-    response = twitter(query)
-    return jsonify(response=response)
+    #response = twitter(query)
+    job = q.enqueue(twitter, query)
+
+    return jsonify(response=response.result)
 
 if __name__ == '__main__':
     app.run(debug=True)
