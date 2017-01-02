@@ -24,10 +24,10 @@ def review_to_words(review):
 
 def sentiment(text):
 
-    processed_text = [review_to_words(text)]
+    processed_text = text #[review_to_words(text)]
 
     sentiment = joblib.load("svm3class.pkl")
 
-    sentiment =  int(sentiment.predict(processed_text))
+    sentiment =  (sentiment.predict(processed_text))
 
     return sentiment
