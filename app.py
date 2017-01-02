@@ -3,6 +3,7 @@ import numpy as np
 from twitter_sent import twitter
 from rq import Queue
 from worker import conn
+import time
 
 q = Queue(connection=conn)
 
@@ -18,7 +19,7 @@ def index():
 def queries(query):
     #response = twitter(query)
     job = q.enqueue(twitter, query)
-
+    time.sleep(10)
     return jsonify(response=job.result)
 
 if __name__ == '__main__':
