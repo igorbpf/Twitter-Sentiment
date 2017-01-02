@@ -1,12 +1,12 @@
 from twython import Twython, TwythonError
 from sentiment.sentiment_module import sentiment
 import pprint
-import time
-import numpy as np
+#import time
+#import numpy as np
 
 def twitter(query):
 
-    t0 = time.time()
+    #t0 = time.time()
 
     ckey = '9ctXbOOJnEtjc94F0BWIVcIIX'
     csecret = 'W3LKMIknqysVEljB1FRhGu7JT2faXGnZEb6lNeOGfBrQwoJXMk'
@@ -24,14 +24,14 @@ def twitter(query):
         print (e)
 
 
-    t1 = time.time()
-    print "time to get tweets"
-    print t1 - t0
+    #t1 = time.time()
+    #print "time to get tweets"
+    #print t1 - t0
 
     reviews = []
 
-    print "ok"
-    t2 = time.time()
+    #print "ok"
+    #t2 = time.time()
     tweets = []
 
     for tweet in search_results['statuses']:
@@ -53,10 +53,10 @@ def twitter(query):
         reviews.append(sent_dict)
 
     #print tweets
-    t3 = time.time()
-    print "Time to sentiment"
-    print t3 - t2
-    print "###################"
+    #t3 = time.time()
+    #print "Time to sentiment"
+    #print t3 - t2
+    #print "###################"
     #print sents
 
     return reviews

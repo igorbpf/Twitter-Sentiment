@@ -1,11 +1,11 @@
 from flask import Flask, jsonify
-import numpy as np
+#import numpy as np
 from twitter_sent import twitter
-from rq import Queue
-from worker import conn
-import time
+#from rq import Queue
+#from worker import conn
+#import time
 
-q = Queue(connection=conn)
+#q = Queue(connection=conn)
 
 app = Flask(__name__)
 
@@ -17,11 +17,11 @@ def index():
 
 @app.route('/<string:query>')
 def queries(query):
-    #response = twitter(query)
-    job = q.enqueue(twitter, query)
-    time.sleep(3)
+    response = twitter(query)
+    #job = q.enqueue(twitter, query)
+    #time.sleep(3)
     #print job.result
-    return jsonify(response=job.result)
+    return jsonify(response=response)
 
 if __name__ == '__main__':
     app.run(debug=True)
