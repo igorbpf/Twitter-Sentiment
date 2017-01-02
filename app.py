@@ -19,8 +19,8 @@ def index():
 def queries(query):
     #response = twitter(query)
     job = q.enqueue(twitter, query)
-    time.sleep(25)
-    print job.result
+    time.sleep(3)
+    #print job.result
     return jsonify(response=job.result)
 
 if __name__ == '__main__':
