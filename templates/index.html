@@ -31,11 +31,11 @@
     <div class="row">
     <div class="col-sm-5 col-sm-offset-1">
         {% if results %}
-            <h2>Sentimentos</h2>
+            <h2>Sentimento</h2>
             <div id="results">
                 <div id="chartContainer">
                   <script type="text/javascript">
-                    var svg = dimple.newSvg("body", 600, 4ss00);
+                    var svg = dimple.newSvg("body", 600, 4s00);
                     var data = [{'Sentimento': 'Negativo', 'Tweets': {{ cont[0] }}}, {'Sentimento': 'Neutro', 'Tweets': {{ cont[1] }}}, {'Sentimento': 'Positvo', 'Tweets': {{ cont[2] }}}];
                     var chart = new dimple.chart(svg, data);
                     chart.addCategoryAxis("x", "Sentimento");
