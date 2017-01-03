@@ -1,27 +1,29 @@
-from flask import Flask, jsonify
-#import numpy as np
+from flask import Flask, jsonify, url_for, request, render_template
 from twitter_sent import twitter
-#from rq import Queue
-#from worker import conn
-#import time
-
-#q = Queue(connection=conn)
 
 app = Flask(__name__)
 
 
-@app.route('/')
+@app.route('/', methods=['GET','POST'])
 def index():
-    return "Digite ao lado do endereco sua busca"
+    data = []
+    result = False
+    if request.method == 'POST':
+        url = request.form['url']
+        _, _, data = twitter(url)
+        result = True
+        print data
+        print result
+        return render_template('index.html', results=result, cont=data)
+    else:
+        return render_template('index.html', results=result, cont=data)
 
 
-@app.route('/<string:query>')
+@app.route('/api/<string:query>')
 def queries(query):
-    response = twitter(query)
-    #job = q.enqueue(twitter, query)
-    #time.sleep(3)
-    #print job.result
-    return jsonify(response=response)
+    response, overall_sentiment, _ = twitter(query)
+    keys = response[0].keys()
+    return jsonify(overall_sentiment=overall_sentiment, response=response)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

@@ -6,16 +6,12 @@ import pprint
 
 def twitter(query):
 
-    #t0 = time.time()
-
     ckey = '9ctXbOOJnEtjc94F0BWIVcIIX'
     csecret = 'W3LKMIknqysVEljB1FRhGu7JT2faXGnZEb6lNeOGfBrQwoJXMk'
     atoken = '234546366-daFnZo785QUAuKfDxkkoXJeECgSh2Mjhiq3QQm2u'
     asecret = 'S72dud7GQZmEBXLGMWmGPIH9hMcwCutW3FIck8QtWZZPl'
 
 
-    # Requires Authentication as of Twitter API v1.1
-    #twitter = Twython(APP_KEY, APP_SECRET, OAUTH_TOKEN, OAUTH_TOKEN_SECRET)
     twitter = Twython(ckey, csecret, atoken, asecret)
 
     try:
@@ -24,42 +20,45 @@ def twitter(query):
         print (e)
 
 
-    #t1 = time.time()
-    #print "time to get tweets"
-    #print t1 - t0
-
     reviews = []
 
-    #print "ok"
-    #t2 = time.time()
     tweets = []
 
     for tweet in search_results['statuses']:
         if tweet['lang'].encode("utf-8") == 'pt':
-            #sent_dict = {}
-            #sent = sentiment(tweet['text']) #.encode('utf-8'))
             tweets.append(tweet['text'])
-            #rev = tweet['text'].encode('utf-8')
-            #sent_dict['review'] = rev
-            #sent_dict['sentiment'] = sent
-            #reviews.append(sent_dict)
 
     sents = sentiment(tweets)
     both = zip(tweets,sents)
+    overall_sentiment = []
+    count_pos = 0
+    count_neutral = 0
+    count_neg = 0
     for i in range(len(both)):
         sent_dict = {}
         sent_dict['review'] = both[i][0]
         sent_dict['sentiment'] = both[i][1]
+        if sent_dict['sentiment'] == 0:
+            sent_dict['sentiment'] = "negative"
+            overall_sentiment.append(-1.0)
+            count_neg = count_neg + 1
+        elif sent_dict['sentiment'] == 1:
+            sent_dict['sentiment'] = "neutral"
+            overall_sentiment.append(0.0)
+            count_neutral = count_neutral + 1
+        elif sent_dict['sentiment'] == 2:
+            sent_dict['sentiment'] = "positive"
+            overall_sentiment.append(1.0)
+            count_pos = count_pos + 1
+
         reviews.append(sent_dict)
 
-    #print tweets
-    #t3 = time.time()
-    #print "Time to sentiment"
-    #print t3 - t2
-    #print "###################"
-    #print sents
-
-    return reviews
+    overall_sentiment = sum(overall_sentiment)/len(overall_sentiment)
+    #data = [{"Sentimento": "Negativo", "Tweets": count_neg},
+    #        {"Sentimento": "Neutro", "Tweets": count_neutral},
+    #        {"Sentimento": "Positvo", "Tweets": count_pos}]
+    data = [count_neg, count_neutral, count_pos]
+    return reviews, overall_sentiment, data
 
 if __name__ == '__main__':
     pprint.pprint(twitter('dilma'))
