@@ -23,7 +23,10 @@ def index():
 
 @app.route('/api/<string:query>')
 def queries(query):
-    response, overall_sentiment, _ = twitter(query)
+
+    response, overall_sentiment, data = twitter(query)
+    if response == [] and data == []:
+        return  "Tente outra coisa ;-)"
     keys = response[0].keys()
     return jsonify(sentimento_global=overall_sentiment, response=response)
 
