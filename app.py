@@ -8,13 +8,17 @@ app = Flask(__name__)
 def index():
     data = []
     result = False
+    error = False
     if request.method == 'POST':
         url = request.form['url']
-        _, _, data = twitter(url)
+        reviews, _, data = twitter(url)
+        if data == [] and reviews == []:
+            error = True
+            return render_template('index.html', results=result, cont=data, error=error)
         result = True
-        return render_template('index.html', results=result, cont=data)
+        return render_template('index.html', results=result, cont=data, error=error)
     else:
-        return render_template('index.html', results=result, cont=data)
+        return render_template('index.html', results=result, cont=data, error=error)
 
 
 @app.route('/api/<string:query>')

@@ -24,7 +24,9 @@
             <button type="submit" class="btn btn-default">Buscar</button>
         </form>
         <br>
-
+        {% if error %}
+            <h4>Não foi possível encontrar tweets relacionados à busca. Tente novamente ;-)</h4>
+        {% endif %}
         <br>
     </div>
 </div>

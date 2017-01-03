@@ -19,10 +19,12 @@ def twitter(query):
     except TwythonError as e:
         print (e)
 
-
     reviews = []
 
     tweets = []
+
+    if search_results['statuses'] == []:
+        return [], [], []
 
     for tweet in search_results['statuses']:
         if tweet['lang'].encode("utf-8") == 'pt':
