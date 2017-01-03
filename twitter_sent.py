@@ -23,12 +23,14 @@ def twitter(query):
 
     tweets = []
 
-    if search_results['statuses'] == []:
-        return [], [], []
+
 
     for tweet in search_results['statuses']:
         if tweet['lang'].encode("utf-8") == 'pt':
             tweets.append(tweet['text'])
+
+    if tweets == []:
+        return [], [], []
 
     sents = sentiment(tweets)
     both = zip(tweets,sents)
