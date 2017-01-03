@@ -21,7 +21,7 @@
                     <div class='form-group'>
                         <input type"text" name="url" class="form-control" id="url-box" placeholder="Busque no Twitter" style='max-width:300px;' autofocus required>
             </div>
-            <button type="submit" class="btn btn-default">Submit</button>
+            <button type="submit" class="btn btn-default">Buscar</button>
         </form>
         <br>
 
@@ -31,11 +31,11 @@
     <div class="row">
     <div class="col-sm-5 col-sm-offset-1">
         {% if results %}
-            <h2>Sentimento</h2>
+            <h3>Distribuição de Sentimentos</h3>
             <div id="results">
                 <div id="chartContainer">
                   <script type="text/javascript">
-                    var svg = dimple.newSvg("body", 600, 4s00);
+                    var svg = dimple.newSvg("body", 600, 400);
                     var data = [{'Sentimento': 'Negativo', 'Tweets': {{ cont[0] }}}, {'Sentimento': 'Neutro', 'Tweets': {{ cont[1] }}}, {'Sentimento': 'Positvo', 'Tweets': {{ cont[2] }}}];
                     var chart = new dimple.chart(svg, data);
                     chart.addCategoryAxis("x", "Sentimento");

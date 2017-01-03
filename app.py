@@ -12,8 +12,6 @@ def index():
         url = request.form['url']
         _, _, data = twitter(url)
         result = True
-        print data
-        print result
         return render_template('index.html', results=result, cont=data)
     else:
         return render_template('index.html', results=result, cont=data)
@@ -23,7 +21,7 @@ def index():
 def queries(query):
     response, overall_sentiment, _ = twitter(query)
     keys = response[0].keys()
-    return jsonify(overall_sentiment=overall_sentiment, response=response)
+    return jsonify(sentimento_global=overall_sentiment, response=response)
 
 if __name__ == '__main__':
     app.run(debug=False)
