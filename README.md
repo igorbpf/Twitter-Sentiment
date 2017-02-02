@@ -12,8 +12,11 @@ svm2class.pkl it is not used, but it can classifiy tweets between POSITIVE and N
 Create a virtual environment and export variables, but first you need to go to Twitter api and get tokens and keys.
 
 export consumer_key=CONSUMER_KEY
+
 export consumer_token=CONSUMER_TOKEN
+
 export access_token=ACCESS_TOKEN
+
 export access_secret=ACCESS_SECRET
 
 run python app.py
