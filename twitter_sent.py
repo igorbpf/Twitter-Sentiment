@@ -1,16 +1,14 @@
 from twython import Twython, TwythonError
 from sentiment.sentiment_module import sentiment
 import pprint
-#import time
-#import numpy as np
+import os
 
 def twitter(query):
 
-    ckey = '9ctXbOOJnEtjc94F0BWIVcIIX'
-    csecret = 'W3LKMIknqysVEljB1FRhGu7JT2faXGnZEb6lNeOGfBrQwoJXMk'
-    atoken = '234546366-daFnZo785QUAuKfDxkkoXJeECgSh2Mjhiq3QQm2u'
-    asecret = 'S72dud7GQZmEBXLGMWmGPIH9hMcwCutW3FIck8QtWZZPl'
-
+    ckey = os.environ['consumer_key']
+    csecret = os.environ['consumer_secret']
+    atoken = os.environ['access_token']
+    asecret = os.environ['access_secret']
 
     twitter = Twython(ckey, csecret, atoken, asecret)
 
@@ -58,9 +56,6 @@ def twitter(query):
         reviews.append(sent_dict)
 
     overall_sentiment = sum(overall_sentiment)/len(overall_sentiment)
-    #data = [{"Sentimento": "Negativo", "Tweets": count_neg},
-    #        {"Sentimento": "Neutro", "Tweets": count_neutral},
-    #        {"Sentimento": "Positvo", "Tweets": count_pos}]
     data = [count_neg, count_neutral, count_pos]
     return reviews, overall_sentiment, data
 
