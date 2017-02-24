@@ -7,6 +7,7 @@ The classifier is saved in a .pkl file. It is the svm3class.pkl. It categorizes 
 
 svm2class.pkl it is not used, but it can classifiy tweets between POSITIVE and NEGATIVE only.
 
+https://twisentiment.herokuapp.com/
 
 # Usage
 Create a virtual environment and export variables, but first you need to go to Twitter api and get tokens and keys.
